@@ -18,7 +18,7 @@ class Administrateur(models.Model):
                                 verbose_name="Date de creation")
 
     def __str__(self):
-        return self.id
+        return self.nom_util
 
 
 # Classe ORM Formateur
@@ -35,7 +35,7 @@ class Formateur(models.Model):
                                 verbose_name="Date de creation")
 
     def __str__(self):
-        return self.id
+        return self.nom_util
 
 
 # Classe ORM Categorie
@@ -44,7 +44,7 @@ class Categorie(models.Model):
     administrateur = models.ForeignKey('Administrateur')
 
     def __str__(self):
-        return self.id
+        return self.lib_categ
 
 
 # Classe ORM Formation
@@ -55,7 +55,7 @@ class Formation(models.Model):
     categorie = models.ForeignKey('Categorie')
 
     def __str__(self):
-        return self.id
+        return self.lib_form
 
 
 # Classe ORM Apprenant
@@ -70,7 +70,7 @@ class Apprenant(models.Model):
     formation = models.ForeignKey('Formation')
 
     def __str__(self):
-        return self.id
+        return self.nom_util
 
 
 # Classe ORM Regroupement
@@ -79,7 +79,7 @@ class Regroupement(models.Model):
     formation = models.ForeignKey('Formation')
 
     def __str__(self):
-        return self.id
+        return str(self.formation)
 
 
 # Classe ORM Cours
@@ -88,7 +88,7 @@ class Cours(models.Model):
     formation = models.ForeignKey('Formation')
 
     def __str__(self):
-        return self.id
+        return self.lib_cour
 
 
 # Classe ORM Chapitre
@@ -97,7 +97,7 @@ class Chapitre(models.Model):
     cours = models.ForeignKey('Cours')
 
     def __str__(self):
-        return self.id
+        return self.lib_chap
 
 
 # Classe ORM Ressource
@@ -107,7 +107,7 @@ class Ressource(models.Model):
     chapitre = models.ForeignKey('Chapitre')
 
     def __str__(self):
-        return self.id
+        return self.lib_ress
 
 
 # Classe ORM Animer
@@ -116,7 +116,7 @@ class Animer(models.Model):
     id_form = models.ForeignKey('Formation')
 
     def __str__(self):
-        return self.id
+        return str(self.id_util)
 
 
 # Classe ORM Test
@@ -128,4 +128,4 @@ class Test(models.Model):
     note_test = models.IntegerField()
 
     def __str__(self):
-        return self.id
+        return str(self.date_test)
