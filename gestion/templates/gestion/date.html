@@ -1,0 +1,13 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<h3>voici l'heure actuelle <span class="label label-default"> {{ date }} </span></h3>
+
+{# Read the documentation for more information #}

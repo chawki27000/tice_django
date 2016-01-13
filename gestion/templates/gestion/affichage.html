@@ -1,0 +1,22 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+<ul class="list-group">
+<li class="list-group-item">{{ tuple.id }}</li>
+<li class="list-group-item">{{ tuple.nom_util }}</li>
+<li class="list-group-item">{{ tuple.prenom_util }}</li>
+<li class="list-group-item">{{ tuple.login_util }}</li>
+<li class="list-group-item">{{ tuple.password_util }}</li>
+<li class="list-group-item">{{ tuple.grade_util }}</li>
+<li class="list-group-item">{{ tuple.mail_util }}</li>
+<li class="list-group-item">{{ tuple.date }}</li>
+</ul>
+
+{# Read the documentation for more information #}
