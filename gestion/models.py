@@ -2,20 +2,26 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
 # Classe ORM Administrateur
 class Administrateur(models.Model):
     # id : cle primaire est mise a jour automatiquement
-    nom_util = models.CharField(max_length=200)
-    prenom_util = models.CharField(max_length=200)
-    mail_util = models.EmailField()
-    password_util = models.CharField(max_length=50)
-    login_util = models.CharField(max_length=30)
+    """
+    les informations sur le profil utilisateur est contenu dans user
+    voici les information que user peut prendre :
+    username : login utilisateur / login_util
+    first_name : prenom utilsateur / prenom_util
+    last_name : nom utilsateur / nom_util
+    email : email utilisateur / mail_util
+    password : mot de passe utilisateur / password_util
+    last_login : date de la derniere connexion
+    date_joined : date de la premiere connexion
+    """
+    user = models.OneToOneField(User)  # La liaison OneToOne vers le modèle User
     grade_util = models.CharField(max_length=50)
-    date = models.DateTimeField(auto_now_add=True, auto_now=False,
-                                verbose_name="Date de creation")
 
     def __str__(self):
         return self.nom_util
@@ -23,16 +29,9 @@ class Administrateur(models.Model):
 
 # Classe ORM Formateur
 class Formateur(models.Model):
-    nom_util = models.CharField(max_length=200)
-    prenom_util = models.CharField(max_length=200)
-    mail_util = models.EmailField()
-    password_util = models.CharField(max_length=50)
-    login_util = models.CharField(max_length=30)
-    grade_util = models.CharField(max_length=50)
+    user = models.OneToOneField(User)  # La liaison OneToOne vers le modèle User
     spec_formation = models.CharField(max_length=80)
     type_formation = models.CharField(max_length=80)
-    date = models.DateTimeField(auto_now_add=True, auto_now=False,
-                                verbose_name="Date de creation")
 
     def __str__(self):
         return self.nom_util
@@ -60,11 +59,7 @@ class Formation(models.Model):
 
 # Classe ORM Apprenant
 class Apprenant(models.Model):
-    nom_util = models.CharField(max_length=200)
-    prenom_util = models.CharField(max_length=200)
-    mail_util = models.EmailField()
-    password_util = models.CharField(max_length=50)
-    login_util = models.CharField(max_length=30)
+    user = models.OneToOneField(User)  # La liaison OneToOne vers le modèle User
     grade_util = models.CharField(max_length=50)
     diplome_appr = models.CharField(max_length=80)
     formation = models.ForeignKey('Formation')

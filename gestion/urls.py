@@ -1,10 +1,12 @@
-from django.conf.urls import url, patterns
+from django.conf.urls import patterns, url, include
+from django.views.generic import ListView, TemplateView
+
 from gestion import views
+from gestion.models import Administrateur
 
 urlpatterns = [
+    url(r'^$', views.ListeAdmin.as_view(), name="blog_liste"),
     url(r'^accueil$', views.home),
-    url(r'demande/(?P<id>\d+)$', views.view_demande),
-    url(r'^redirection$', views.view_redirection),
-    url(r'^date$', views.date_actuelle),
-    url(r'^affichage/(?P<id>\d+)$', views.affichage),
+    url(r'^info/(?P<id>\d+)$', views.lire),
+
 ]

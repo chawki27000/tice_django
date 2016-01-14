@@ -1,35 +1,28 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
-from django.http import HttpResponse, Http404
-from django.shortcuts import render, redirect, get_object_or_404
-from gestion.models import Administrateur
+from django.http import HttpResponse
 
 
 # Create your views here.
+from django.shortcuts import render
+from django.views.generic import ListView
+
+from gestion.models import Administrateur
+
+
 def home(request):
     text = """<h1>Bienvenue sur mon site !</h1>
               <p>ça sera la page d'acceuil (pour bientot)</p>"""
     return HttpResponse(text)
 
 
-def affichage(request, id):
-    tuple = get_object_or_404(Administrateur, id=id)
-
-    return render(request, 'gestion/affichage.html', locals())
-
-
 # C'EST LA PARTIE ESSAI ET DEVELOPPEMENT
-def view_demande(request, id):
-    if int(id) > 100:
-        return redirect(view_redirection)
+def lire(request, id):
 
-    text = "Vous avez demandé le numero : {0} !".format(id)
-    return HttpResponse(text)
+    admin1 = Administrateur.objects.filter(id=id)
+    return render(request, 'gestion/info.html', locals())
 
-
-def view_redirection(request):
-    return HttpResponse("Vous avez été redirigé.")
-
-
-def date_actuelle(request):
-    return render(request, 'gestion/date.html', {'date': datetime.now()})
+class ListeAdmin(ListView):
+    model = Administrateur
+    context_object_name = "derniers_admin"
+    template_name = "gestion/affichage.html"
+    paginate_by = 5
