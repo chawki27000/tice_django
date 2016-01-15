@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
+from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
-
 
 # Create your views here.
 from django.shortcuts import render
-from django.views.generic import ListView
 
-from gestion.models import Administrateur
+from gestion.forms import ConnexionForm
 
 
 def home(request):
@@ -16,13 +15,22 @@ def home(request):
 
 
 # C'EST LA PARTIE ESSAI ET DEVELOPPEMENT
-def lire(request, id):
+def connexion(request):
+    error = False
 
-    admin1 = Administrateur.objects.filter(id=id)
-    return render(request, 'gestion/info.html', locals())
+    if request.method == 'POST':
+        form = ConnexionForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+            user = authenticate(username=username, password=password)
 
-class ListeAdmin(ListView):
-    model = Administrateur
-    context_object_name = "derniers_admin"
-    template_name = "gestion/affichage.html"
-    paginate_by = 5
+            if user:  # Si l'objet renvoyé n'est pas None
+                login(request, user)  # nous connectons l'utilisateur
+            else:  # sinon une erreur sera affichée
+                error = True
+
+    else:
+        form = ConnexionForm()
+
+    return render(request, 'gestion/connexion.html', locals())
