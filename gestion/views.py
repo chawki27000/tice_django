@@ -5,7 +5,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from gestion.forms import AdministrateurForm, FormateurForm, CategorieForm
-from gestion.forms import FormationForm
+from gestion.forms import FormationForm, ApprenantForm, RegroupementForm
+from gestion.forms import CoursForm, ChapitreForm, RessourceForm, AnimerForm, TestForm
 
 
 def home(request):
@@ -71,3 +72,94 @@ def formation(request):
         form = FormationForm()
 
     return render(request, 'gestion/form_formation.html', locals())
+
+
+def apprenant(request):
+    if request.method == 'POST':
+        form = ApprenantForm(request.POST)
+
+        if form.is_valid():
+            a = 1
+
+    else:
+        form = ApprenantForm()
+
+    return render(request, 'gestion/form_appre.html', locals())
+
+
+def regroupement(request):
+    if request.method == 'POST':
+        form = RegroupementForm(request.POST)
+
+        if form.is_valid():
+            a = 1
+
+    else:
+        form = RegroupementForm()
+
+    return render(request, 'gestion/form_regroup.html', locals())
+
+
+def cours(request):
+    if request.method == 'POST':
+        form = CoursForm(request.POST)
+
+        if form.is_valid():
+            a = 1
+
+    else:
+        form = CoursForm()
+
+    return render(request, 'gestion/form_cours.html', locals())
+
+
+def chapitre(request):
+    if request.method == 'POST':
+        form = ChapitreForm(request.POST)
+
+        if form.is_valid():
+            a = 1
+
+    else:
+        form = ChapitreForm
+
+    return render(request, 'gestion/form_chapitre.html', locals())
+
+
+def ressource(request):
+    if request.method == 'POST':
+        form = RessourceForm(request.POST)
+
+        if form.is_valid():
+            a = 1
+
+    else:
+        form = RessourceForm()
+
+    return render(request, 'gestion/form_ress.html', locals())
+
+
+def animer(request):
+    if request.method == 'POST':
+        form = AnimerForm(request.POST)
+
+        if form.is_valid():
+            a = 1
+
+    else:
+        form = AnimerForm()
+
+    return render(request, 'gestion/form_animer.html', locals())
+
+
+def test(request):
+    if request.method == 'POST':
+        form = TestForm(request.POST)
+
+        if form.is_valid():
+            a = 1
+
+    else:
+        form = TestForm()
+
+    return render(request, 'gestion/form_test.html', locals())

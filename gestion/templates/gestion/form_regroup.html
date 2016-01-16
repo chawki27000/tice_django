@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<h1>Formulaire Regroupement</h1>
 
-</body>
-</html>
+<form  action="{% url "gestion.views.regroupement"  %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Valider" />
+</form>

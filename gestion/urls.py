@@ -1,8 +1,6 @@
-from django.conf.urls import patterns, url, include
-from django.views.generic import ListView, TemplateView
+from django.conf.urls import url
 
 from gestion import views
-from gestion.models import Administrateur
 
 urlpatterns = [
     url(r'^accueil$', views.home),
@@ -10,5 +8,12 @@ urlpatterns = [
     url(r'^forms/formateur', views.formateur),
     url(r'^forms/categorie', views.categorie),
     url(r'^forms/formation', views.formation),
+    url(r'^forms/apprenant', views.apprenant),
+    url(r'^forms/regroup', views.regroupement),
+    url(r'^forms/cours', views.cours),
+    url(r'^forms/chapitre', views.chapitre),
+    url(r'^forms/ress', views.ressource),
+    url(r'^forms/animer', views.animer),
+    url(r'^forms/test', views.test),
 
 ]
