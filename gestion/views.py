@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 
 # Create your views here.
 from django.shortcuts import render
 
-from gestion.forms import ConnexionForm
+from gestion.forms import AdministrateurForm, FormateurForm, CategorieForm
+from gestion.forms import FormationForm
 
 
 def home(request):
@@ -14,23 +14,60 @@ def home(request):
     return HttpResponse(text)
 
 
-# C'EST LA PARTIE ESSAI ET DEVELOPPEMENT
-def connexion(request):
-    error = False
-
+def administrateur(request):
     if request.method == 'POST':
-        form = ConnexionForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data["username"]
-            password = form.cleaned_data["password"]
-            user = authenticate(username=username, password=password)
+        form = AdministrateurForm(request.POST)
 
-            if user:  # Si l'objet renvoyé n'est pas None
-                login(request, user)  # nous connectons l'utilisateur
-            else:  # sinon une erreur sera affichée
-                error = True
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            grade_util = form.cleaned_data['grade_util']
+
+            # faire une entrée dans la base de données
 
     else:
-        form = ConnexionForm()
+        form = AdministrateurForm()
 
-    return render(request, 'gestion/connexion.html', locals())
+    return render(request, 'gestion/form_admin.html', locals())
+
+
+def formateur(request):
+    if request.method == 'POST':
+        form = FormateurForm(request.POST)
+
+        if form.is_valid():
+            a = 1
+
+    else:
+        form = FormateurForm()
+
+    return render(request, 'gestion/form_formateur.html', locals())
+
+
+def categorie(request):
+    if request.method == 'POST':
+        form = CategorieForm(request.POST)
+
+        if form.is_valid():
+            a = 1
+
+    else:
+        form = CategorieForm()
+
+    return render(request, 'gestion/form_categorie.html', locals())
+
+
+def formation(request):
+    if request.method == 'POST':
+        form = FormationForm(request.POST)
+
+        if form.is_valid():
+            a = 1
+
+    else:
+        form = FormationForm()
+
+    return render(request, 'gestion/form_formation.html', locals())

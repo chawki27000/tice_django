@@ -6,6 +6,9 @@ from gestion.models import Administrateur
 
 urlpatterns = [
     url(r'^accueil$', views.home),
-    url(r'^connexion$', views.connexion, name='connexion')
+    url(r'^forms/admin$', views.administrateur),
+    url(r'^forms/formateur', views.formateur),
+    url(r'^forms/categorie', views.categorie),
+    url(r'^forms/formation', views.formation),
 
 ]

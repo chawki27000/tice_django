@@ -1,0 +1,7 @@
+<h1>Formulaire Administrateur</h1>
+
+<form  action="{% url "gestion.views.administrateur"  %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Valider" />
+</form>
