@@ -15,6 +15,10 @@ def home(request):
     return HttpResponse(text)
 
 
+def date(request):
+    return render(request, "gestion/date.html", {})
+
+
 def administrateur(request):
     if request.method == 'POST':
         form = AdministrateurForm(request.POST)

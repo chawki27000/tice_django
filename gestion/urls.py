@@ -4,6 +4,7 @@ from gestion import views
 
 urlpatterns = [
     url(r'^accueil$', views.home),
+    url(r'^date$', views.date),
     url(r'^forms/admin$', views.administrateur),
     url(r'^forms/formateur', views.formateur),
     url(r'^forms/categorie', views.categorie),
